@@ -15,9 +15,21 @@
     // props: propriedades de um elemento
     // const elementProps = {className: 'container', children: 'Hello world! do Otávio'}
     // const reactElement = React.createElement('div', elementProps)
+
+    /*
+    A propriedade children de um componente React pode conter outros elementos React
+    Parâmetros do método React.createElement():
+    1º o tipo de elemento que será criado
+    2º um objeto representado as props do objeto
+    3º o conteúdo interno ( children em textContent) do elemento (opcional)
+    */
     const reactElement = React.createElement('div', {
         className: 'container', 
-        children: 'Hello world! do Otávio'
+        children: [
+            // O resultado final dos React.createelement() abaixo são semelhantes
+            React.createElement('span', null, 'Hello,'),
+            React.createElement('span', {children: ' world!'})
+        ]
     })
     ReactDOM.render(reactElement, rootElement)
 
