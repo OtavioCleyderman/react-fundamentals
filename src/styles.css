@@ -25,7 +25,11 @@
 .keys #pear-input {
   background-color: #bef171;
 }
-
+.keys .morango-input,
+.keys [for='morango-input'],
+.keys #morango-input {
+  background-color: red;
+}
 .keys li {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -34,7 +38,8 @@
 .keys [for='apple-input'],
 .keys [for='orange-input'],
 .keys [for='grape-input'],
-.keys [for='pear-input'] {
+.keys [for='pear-input'],
+.keys [for='morango-input'] {
   display: inline-block;
   width: 100px;
   text-align: right;
