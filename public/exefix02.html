@@ -15,22 +15,48 @@
 
         /*
             Usando os recursos do React (manipuladores de evento, useRef e useState),
-            escreva o nome completo da pessoa (EM MAIÚSCULAS toda vez que houver alteração nos campos de nome ou sobrenome) 
+            escreva o nome completo da pessoa (EM MAIÚSCULAS) toda vez que houver alteração nos campos de nome ou sobrenome.
+
+            1) Criar dois useRef e associá-los aos inputs.
+            2) Crtiar um useState para armazenar o nome completo.
+            3) Criar uma função para manipular o evento onChange dos inputs. Nessa função, deve-se ler s valores de ambos os inputs (com as refs),
+            formar o nome completo em maiúsculas e guardá-lo na variável de estado.
+            4) usar a variável de estado para atualizar o conteúdo da div do nome completo.
         */
-        
+
+
 
         function MeuForm(props) {
+
+        // 1) Criando as referências 
+            const nameRef = React.useRef()
+            const surnameRef = React.useRef()
+
+        // 2) Criar um useState para armazenar o nome completo
+            const [fullName, setFullName] = React.useState('')
+
+        // 3) Criar uma função para manipular o evento onChange dos inputs. Nessa função, deve-se ler s valores de ambos os inputs (com as refs),
+        // formar o nome completo em maiúsculas e guardá-lo na variável de estado.
+            function handleChange(event) {
+                const name = nameRef.current.value            // captura o valor do input nome
+                const surname = surnameRef.current.value  // captura o valor do input sobrenome 
+
+                // Armazenar o nome completo, já em maiúsculas, na variável de estado
+                setFullName(name.toUpperCase() + ' ' + surname.toUpperCase())
+            }
+
             return (
                 <form>
                     <div>
                         <label htmlFor="nome">Nome:</label>
-                        <input  type="text" id="nome" />                    
+                        <input ref={nameRef} type="text" id="nome" onChange={handleChange} />                    
                     </div> 
                     <div>
                         <label htmlFor="sobrenome">Sobrenome:</label>
-                        <input type="text" id="sobrenome" />                        
+                        <input ref={surnameRef} type="text" id="sobrenome" onChange={handleChange} />                        
                     </div>
-                    <div id="nomeCompleto"></div>
+                    {/* 4) usar a variável de estado para atualizar o conteúdo da div do nome completo. */}
+                    <div id="nomeCompleto">{fullName}</div>
                 </form>    
             )
         }
